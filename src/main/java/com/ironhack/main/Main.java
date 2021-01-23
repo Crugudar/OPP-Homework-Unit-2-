@@ -32,6 +32,7 @@ public class Main {
                                  .trim();
 
             commandReader(userInput, leadList, opportunitiesList);
+
         }
     }
 

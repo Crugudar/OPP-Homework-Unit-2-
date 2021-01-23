@@ -75,56 +75,53 @@ public class ScanInfo {
 
 
     public static Opportunity askOpportunityInfo(Contact decisionMaker){
-        try {
-            Product productchosen = null;
-            int quantity= 0;
 
-            while (productchosen == null){
-                System.out.println("What product is the client interested in??\n"+Product.HYBRID+"\n"+Product.FLATBED+"\n"+Product.BOX);
-                String product= scanner.nextLine().trim().toLowerCase();
-                switch (product){
-                    case "hybrid":
-                        productchosen=Product.HYBRID;
-                        break;
-                    case "flatbed":
-                        productchosen=Product.FLATBED;
-                        break;
-                    case "box":
-                        productchosen=Product.BOX;
-                        break;
-                    default:
-                        System.out.println("choose a valid product");
-                }
-            }
-            while (quantity<=0) {
-                System.out.println("How many units?");
-                String num = scanner.nextLine().trim();
-                quantity = Integer.parseInt(num);
-                if (quantity <= 0) {
-                    throw new IllegalArgumentException("Quantity must be above 0");
-                }
+        Product productChosen = null;
+        while (productChosen == null){
+            System.out.println("What product is the client interested in??\n"+Product.HYBRID+"\n"+Product.FLATBED+"\n"+Product.BOX);
+            String product= scanner.nextLine().trim().toLowerCase();
+            try {
+                productChosen = checkProduct(product);
+            } catch (NullPointerException e) {
+                System.out.println("Null values are not allowed");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
 
-            return new Opportunity(productchosen,quantity, decisionMaker);
-
-        }catch (NullPointerException e){
-            System.out.println("Null values are not allowed");
-        }catch (NumberFormatException e){
-            System.out.println("Type a valid number format");
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
         }
 
-        return null;
+        int quantity = 0;
+        boolean validQuantity = false;
+        while (!validQuantity) {
+            System.out.println("How many units?");
+            String num = scanner.nextLine().trim();
+            try {
+                quantity = Integer.parseInt(num);
+                validQuantity = checkQuantity(quantity);
+            } catch (NullPointerException e) {
+                System.out.println("Null values are not allowed");
+            } catch (NumberFormatException e) {
+                System.out.println("Type a valid number format");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }
+
+
+        }
+
+        return new Opportunity(productChosen,quantity, decisionMaker);
 
     }
 
+
     public static Account askAccountInfo(Contact contact, Opportunity opportunity){
+        // el try así no funciona, hay que volver a ponerlo en cada apartado
+        // además, cada apartado debe tener su función en Checker
         try {
 
-            Industry industry = null;
+            Industry industryChosen = null;
 
-            while (industry==null){
+            while (industryChosen==null){
                 System.out.println("What industry does the client work on??\n" +
                                    Industry.PRODUCE + "\n" +
                                    Industry.ECOMMERCE + "\n" +
@@ -132,23 +129,23 @@ public class ScanInfo {
                                    Industry.MEDICAL + "\n" +
                                    Industry.OTHER);
 
-                String product= scanner.nextLine().trim().toUpperCase();
+                String industry = scanner.nextLine().trim().toUpperCase();
 
-                switch (product){
+                switch (industry){
                     case "PRODUCE":
-                        industry=Industry.PRODUCE;
+                        industryChosen=Industry.PRODUCE;
                         break;
                     case "ECOMMERCE":
-                        industry=Industry.ECOMMERCE;
+                        industryChosen=Industry.ECOMMERCE;
                         break;
                     case "MANUFACTURING":
-                        industry=Industry.MANUFACTURING;
+                        industryChosen=Industry.MANUFACTURING;
                         break;
                     case "MEDICAL":
-                        industry=Industry.MEDICAL;
+                        industryChosen=Industry.MEDICAL;
                         break;
                     case "OTHER":
-                        industry=Industry.OTHER;
+                        industryChosen=Industry.OTHER;
                         break;
 
                     default:
@@ -191,7 +188,7 @@ public class ScanInfo {
                 validCountryName=true;
             }
 
-            return new Account(numOfEmployees,cityName, countryName, contact, opportunity, industry);
+            return new Account(numOfEmployees,cityName, countryName, contact, opportunity, industryChosen);
 
         }catch (NullPointerException e) {
             System.out.println("Null values are not allowed");

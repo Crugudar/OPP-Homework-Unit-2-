@@ -45,12 +45,10 @@ public class Lead {
 
     @Override
     public String toString() {
-        return "Lead{" +
-                "name='" + name + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", email='" + email + '\'' +
-                ", companyName='" + companyName + '\'' +
-                ", leadId=" + leadId +
-                '}';
+        return "Lead " + leadId +
+                "\nname = " + name +
+                ", \nphoneNumber = " + phoneNumber +
+                ", \nemail = " + email +
+                ", \ncompanyName = " + companyName;
     }
 }

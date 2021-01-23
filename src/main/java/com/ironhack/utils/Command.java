@@ -30,42 +30,34 @@ public class Command {
                 case "show":
                     switch (arr[1]) {
                         case "leads":
-                            for (Lead lead : leadList.values()) {
-                                System.out.println(lead);
-                            }
+                            showLeads(leadList);
                             break;
                         case "opportunities":
-                            for (Opportunity opportunity : opportunityList.values()) {
-                                System.out.println(opportunity);
-                            }
+                            showOpportunities(opportunityList);
                             break;
                         default:
                             System.out.println("That is not a valid command");
-                            userInput = "";
                     }
                     break;
                 case "lookup":
                     switch (arr[1]) {
                         case "lead":
-                            System.out.println(leadList.get(Integer.parseInt(arr[2])));
+                            lookupLead(arr[2], leadList);
                             break;
                         case "opportunity":
-                            System.out.println(opportunityList.get(Integer.parseInt(arr[2])));
+                            lookupOpportunity(arr[2], opportunityList);
                             break;
                         default:
                             System.out.println("That is not a valid command");
-                            userInput = "";
                     }
                     break;
 
                 case "close-lost":
-                    Opportunity lostOpportunity = opportunityList.get(Integer.parseInt(arr[1]));
-                    lostOpportunity.setStatus(Status.CLOSED_LOST);
+                    closeLost(arr[1], opportunityList);
                     break;
 
                 case "close-won":
-                    Opportunity wonOpportunity = opportunityList.get(Integer.parseInt(arr[1]));
-                    wonOpportunity.setStatus(Status.CLOSED_WON);
+                    closeWon(arr[1], opportunityList);
                     break;
 
                 case "exit":
@@ -74,17 +66,15 @@ public class Command {
 
                 default:
                     System.out.println("That is not a valid command");
-                    userInput = "";
                 }
             }catch(NumberFormatException e){
-                System.out.println("Type a valid id for converting");
-                userInput = "";
+                System.out.println("Type a valid id");
             }catch(NullPointerException e){
-                System.out.println("id doesn't exist");
+                System.out.println("That id does not exist");
             }catch(ArrayIndexOutOfBoundsException e){
                 System.out.println("That is not a valid command");
-                userInput = "";
             }
+
     }
 
     public static void newLead (Lead lead, HashMap < Integer, Lead > leadList){
@@ -108,25 +98,70 @@ public class Command {
         leadList.remove(lead.getLeadId());
     }
 
-    public void showLeads (HashMap < Integer, Lead > leadList){
+    public static void showLeads (HashMap < Integer, Lead > leadList){
+        for (Lead lead : leadList.values()) {
+            System.out.println(lead);
+            System.out.println("");
+        }
     }
 
-    public void showOpportunities (HashMap < Integer, Opportunity > opportunityList){
+    public static void showOpportunities (HashMap < Integer, Opportunity > opportunityList){
+        for (Opportunity opportunity : opportunityList.values()) {
+            System.out.println(opportunity);
+            System.out.println("");
+        }
     }
 
-    public void lookupLead (HashMap < Integer, Lead > leadList){
+    public static void lookupLead (String id, HashMap < Integer, Lead > leadList){
+        Integer leadId = Integer.parseInt(id);
+        if (leadId < 0){
+            throw new NumberFormatException();
+        }
+        Lead lead = leadList.get(leadId);
+        if (lead == null){
+            throw new NullPointerException();
+        }
+        System.out.println(lead);
+
     }
 
-    public void lookupOpportunity (HashMap < Integer, Opportunity > opportunityList){
+    public static void lookupOpportunity (String id, HashMap < Integer, Opportunity > opportunityList){
+        Integer opportunityId = Integer.parseInt(id);
+        if (opportunityId < 0){
+            throw new NumberFormatException();
+        }
+        Opportunity opportunity = opportunityList.get(opportunityId);
+        if (opportunity == null){
+            throw new NullPointerException();
+        }
+        System.out.println(opportunity);
     }
 
-    public void closeLost (HashMap < Integer, Opportunity > opportunityList){
+    public static void closeLost (String id, HashMap < Integer, Opportunity > opportunityList){
+        Integer opportunityId = Integer.parseInt(id);
+        if (opportunityId < 0){
+            throw new NumberFormatException();
+        }
+        Opportunity opportunity = opportunityList.get(opportunityId);
+        if (opportunity == null){
+            throw new NullPointerException();
+        }
+        opportunity.setStatus(Status.CLOSED_LOST);
     }
 
-    public void closeWon (HashMap < Integer, Opportunity > opportunityList){
+    public static void closeWon (String id, HashMap < Integer, Opportunity > opportunityList){
+        Integer opportunityId = Integer.parseInt(id);
+        if (opportunityId < 0){
+            throw new NumberFormatException();
+        }
+        Opportunity opportunity = opportunityList.get(opportunityId);
+        if (opportunity == null){
+            throw new NullPointerException();
+        }
+        opportunity.setStatus(Status.CLOSED_WON);
     }
 
-    public void exit () {
+    public static void exit () {
     }
 
 
