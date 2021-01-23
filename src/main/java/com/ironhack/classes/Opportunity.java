@@ -1,7 +1,6 @@
 package com.ironhack.classes;
 
-import com.ironhack.enums.Product;
-import com.ironhack.enums.Status;
+import com.ironhack.enums.*;
 
 public class Opportunity {
     private Product product;

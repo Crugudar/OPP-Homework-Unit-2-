@@ -3,8 +3,7 @@ package com.ironhack.classes;
 import com.ironhack.enums.Industry;
 import com.ironhack.enums.Product;
 
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class Lead {
     private String name;
@@ -23,7 +22,7 @@ public class Lead {
         this.leadId = leadIdCounter++;
     }
 
-    public void convertLeadToOpportunity(Scanner scanner, HashMap<Integer,Lead> leadHashMap,HashMap<Integer,Opportunity> opportunityHashMap) {
+    public void convertToOpportunity(Scanner scanner, HashMap<Integer,Lead> leadHashMap,HashMap<Integer,Opportunity> opportunityHashMap) {
         Contact contact = new Contact(this.name, this.phoneNumber, this.email, this.companyName);
         Product productchosen = null;
         int quantity= 0;
@@ -188,5 +187,13 @@ public class Lead {
                 ", companyName='" + companyName + '\'' +
                 ", leadId=" + leadId +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Lead lead = (Lead) o;
+        return phoneNumber == lead.phoneNumber && Objects.equals(name, lead.name) && Objects.equals(email, lead.email) && Objects.equals(companyName, lead.companyName);
     }
 }
