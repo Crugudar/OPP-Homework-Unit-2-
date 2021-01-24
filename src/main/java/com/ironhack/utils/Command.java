@@ -96,19 +96,32 @@ public class Command {
         Account account = askAccountInfo(decisionMaker, opportunity);
 
         leadList.remove(lead.getLeadId());
+
+        opportunityList.put(opportunity.getOpportunityId(), opportunity);
     }
 
     public static void showLeads (HashMap < Integer, Lead > leadList){
-        for (Lead lead : leadList.values()) {
-            System.out.println(lead);
-            System.out.println("");
+//        Por si nos da por transformar todas las leads en oportunidades y se queda esta lista vacía:
+        if (leadList.isEmpty()){
+//            ¿Preferimos que nos salga un mensaje o una excepción?
+            System.out.println("You don't have leads in this moment");
+        }else {
+            for (Lead lead : leadList.values()) {
+                System.out.println(lead);
+                System.out.println("");
+            }
         }
     }
 
     public static void showOpportunities (HashMap < Integer, Opportunity > opportunityList){
-        for (Opportunity opportunity : opportunityList.values()) {
-            System.out.println(opportunity);
-            System.out.println("");
+        if (opportunityList.isEmpty()){
+//            ¿Preferimos que nos salga un mensaje o una excepción?
+            System.out.println("You haven't created any opportunity yet");
+        }else {
+            for (Opportunity opportunity : opportunityList.values()) {
+                System.out.println(opportunity);
+                System.out.println("");
+            }
         }
     }
 
@@ -161,9 +174,8 @@ public class Command {
         opportunity.setStatus(Status.CLOSED_WON);
     }
 
+//    necesitamos este?
     public static void exit () {
     }
-
-
 
 }

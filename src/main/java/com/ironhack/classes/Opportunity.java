@@ -2,6 +2,8 @@ package com.ironhack.classes;
 
 import com.ironhack.enums.*;
 
+import java.util.*;
+
 public class Opportunity {
     private Product product;
     private int quantity;
@@ -44,12 +46,19 @@ public class Opportunity {
 
     @Override
     public String toString() {
-        return "Opportunity{" +
+        return "Opportunity " +
                 "product=" + product +
-                ", amount=" + quantity +
-                ", decisionMaker=" + decisionMaker +
-                ", status=" + status +
-                ", opportunityId=" + opportunityId +
-                '}';
+                "\namount=" + quantity +
+                ", \ndecisionMaker=" + decisionMaker +
+                ", \nstatus=" + status +
+                ", \nopportunityId=" + opportunityId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Opportunity that = (Opportunity) o;
+        return quantity == that.quantity && product == that.product && Objects.equals(decisionMaker, that.decisionMaker) && status == that.status;
     }
 }

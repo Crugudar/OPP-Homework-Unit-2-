@@ -1,7 +1,6 @@
 package com.ironhack.classes;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class Contact {
     private String name;
@@ -50,5 +49,11 @@ public class Contact {
                 '}';
     }
 
-
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contact contact = (Contact) o;
+        return Objects.equals(name, contact.name) && Objects.equals(phoneNumber, contact.phoneNumber) && Objects.equals(email, contact.email) && Objects.equals(companyName, contact.companyName);
+    }
 }

@@ -22,6 +22,7 @@ class CheckerTest {
     @Test
     public void checkname_errorname_error(){
         assertThrows(IllegalArgumentException.class, ()-> Checker.checkName("Pepa"));
+        assertThrows(IllegalArgumentException.class, ()-> Checker.checkName("Pepa Pig14"));
     }
 
     @Test
@@ -32,6 +33,8 @@ class CheckerTest {
     @Test
     public void checkphone_errorphone_error(){
         assertThrows(IllegalArgumentException.class, ()-> Checker.checkPhone("767"));
+        assertThrows(IllegalArgumentException.class, ()-> Checker.checkPhone("500876543"));
+        assertThrows(IllegalArgumentException.class, ()-> Checker.checkPhone("50087654398"));
     }
 
     @Test
@@ -42,6 +45,7 @@ class CheckerTest {
     @Test
     public void checkemail_erroremail_error(){
         assertThrows(IllegalArgumentException.class, ()-> Checker.checkEmail("Pepa"));
+        assertThrows(IllegalArgumentException.class, ()-> Checker.checkEmail("Pepa@ajoij@.com"));
     }
 
     @Test
