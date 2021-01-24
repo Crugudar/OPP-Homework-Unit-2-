@@ -2,16 +2,15 @@ package com.ironhack.classes;
 
 import com.ironhack.enums.Industry;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-public class Account{
+public class Account {
     private Industry industry;
     private int employeeCount;
     private String city;
     private String country;
-    private List<Contact> contactList=new ArrayList<>();
-    private List<Opportunity> opportunityList=new ArrayList<>();
+    private List<Contact> contactList = new ArrayList<>();
+    private List<Opportunity> opportunityList = new ArrayList<>();
     private final int accountId;
     private static int accountIdCounter = 0;
 
@@ -22,7 +21,7 @@ public class Account{
         this.industry = industry;
         this.contactList.add(contact);
         this.opportunityList.add(opportunity);
-        this.accountId=accountIdCounter++;
+        this.accountId = accountIdCounter++;
     }
 
     public int getEmployeeCount() {
@@ -60,5 +59,13 @@ public class Account{
                 ", opportunityList=" + opportunityList +
                 ", accountId=" + accountId +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Account account = (Account) o;
+        return employeeCount == account.employeeCount && industry == account.industry && Objects.equals(city, account.city) && Objects.equals(country, account.country) && Objects.equals(contactList, account.contactList) && Objects.equals(opportunityList, account.opportunityList);
     }
 }
