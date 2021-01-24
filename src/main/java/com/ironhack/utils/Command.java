@@ -17,14 +17,26 @@ public class Command {
             switch (arr[0]) {
                 case "new":
                     if (userInput.equals("new lead")) {
-                        Lead lead = askLeadInfo();
-                        newLead(lead, leadList);
+                        String name = askName();
+                        String phone = askPhone();
+                        String email = askEmail();
+                        String company = askCompName();
+                        newLead(name, phone, email, company, leadList);
                     }
                     break;
 
                 case "convert":
                     int id = Integer.parseInt(arr[1]);
-                    convertLead(leadList.get(id), leadList, opportunityList);
+                    Contact contact = createContact(leadList.get(id));
+                    Product product = askProduct();
+                    int quantity = askQuantity();
+                    Opportunity opportunity = createOpportunity(product, quantity, contact, opportunityList);
+                    Industry industry = askIndustry();
+                    int numOfEmployees = askEmployees();
+                    String city = askCity();
+                    String country = askCountry();
+                    Account account = createAccount(industry, numOfEmployees, city, country, contact, opportunity);
+                    removeLead(id, leadList);
 
                     break;
                 case "show":
@@ -77,29 +89,33 @@ public class Command {
 
     }
 
-    public static void newLead (Lead lead, HashMap < Integer, Lead > leadList){
+    public static void newLead (String name, String phone, String email, String compName, HashMap < Integer, Lead > leadList){
+        Lead lead = new Lead(name, phone, email, compName);
         leadList.put(lead.getLeadId(), lead);
         System.out.println("New lead created!!\n"+lead);
     }
 
-    public static void convertLead(Lead lead, HashMap < Integer, Lead > leadList,
-                                   HashMap < Integer, Opportunity > opportunityList){
-
+    public static Contact createContact(Lead lead){
         String name = lead.getName();
         String phoneNumber = lead.getPhoneNumber();
         String email = lead.getEmail();
         String companyName = lead.getCompanyName();
-        Contact decisionMaker = new Contact(name, phoneNumber, email, companyName);
-
-        Opportunity opportunity = askOpportunityInfo(decisionMaker);
-
-        Account account = askAccountInfo(decisionMaker, opportunity);
-
-        leadList.remove(lead.getLeadId());
-
-        opportunityList.put(opportunity.getOpportunityId(), opportunity);
+        return new Contact(name, phoneNumber, email, companyName);
     }
 
+    public static Opportunity createOpportunity(Product product, int quantity, Contact decisionMaker, HashMap<Integer, Opportunity> opportunityList){
+        Opportunity opportunity = new Opportunity(product, quantity, decisionMaker);
+        opportunityList.put(opportunity.getOpportunityId(), opportunity);
+        return opportunity;
+    }
+
+    public static Account createAccount(Industry industry, int numOfEmployees, String city, String country, Contact contact, Opportunity opportunity){
+        return new Account(industry, numOfEmployees, city, country, contact,opportunity);
+    }
+
+    public static void removeLead(int id, HashMap<Integer, Lead> leadList){
+        leadList.remove(id);
+    }
 
     public static void showLeads (HashMap < Integer, Lead > leadList){
 //        Por si nos da por transformar todas las leads en oportunidades y se queda esta lista vacía:

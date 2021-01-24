@@ -118,92 +118,94 @@ public class ScanInfo {
         return quantity;
     }
 
+    public static Industry askIndustry(){
+        Industry industryChosen = null;
 
-    public static Account askAccountInfo(Contact contact, Opportunity opportunity){
-        // el try así no funciona, hay que volver a ponerlo en cada apartado
-        // además, cada apartado debe tener su función en Checker
-        try {
+        while (industryChosen==null){
+            System.out.println("What industry does the client work on??\n" +
+                    Industry.PRODUCE + "\n" +
+                    Industry.ECOMMERCE + "\n" +
+                    Industry.MANUFACTURING + "\n" +
+                    Industry.MEDICAL + "\n" +
+                    Industry.OTHER);
 
-            Industry industryChosen = null;
+            String industry = scanner.nextLine().trim().toUpperCase();
 
-            while (industryChosen==null){
-                System.out.println("What industry does the client work on??\n" +
-                                   Industry.PRODUCE + "\n" +
-                                   Industry.ECOMMERCE + "\n" +
-                                   Industry.MANUFACTURING + "\n" +
-                                   Industry.MEDICAL + "\n" +
-                                   Industry.OTHER);
+            switch (industry){
+                case "PRODUCE":
+                    industryChosen=Industry.PRODUCE;
+                    break;
+                case "ECOMMERCE":
+                    industryChosen=Industry.ECOMMERCE;
+                    break;
+                case "MANUFACTURING":
+                    industryChosen=Industry.MANUFACTURING;
+                    break;
+                case "MEDICAL":
+                    industryChosen=Industry.MEDICAL;
+                    break;
+                case "OTHER":
+                    industryChosen=Industry.OTHER;
+                    break;
+                default:
+                    System.out.println("choose a valid Industry");
 
-                String industry = scanner.nextLine().trim().toUpperCase();
-
-                switch (industry){
-                    case "PRODUCE":
-                        industryChosen=Industry.PRODUCE;
-                        break;
-                    case "ECOMMERCE":
-                        industryChosen=Industry.ECOMMERCE;
-                        break;
-                    case "MANUFACTURING":
-                        industryChosen=Industry.MANUFACTURING;
-                        break;
-                    case "MEDICAL":
-                        industryChosen=Industry.MEDICAL;
-                        break;
-                    case "OTHER":
-                        industryChosen=Industry.OTHER;
-                        break;
-
-                    default:
-                        System.out.println("choose a valid Industry");
-
-                }
             }
+        }
+        return industryChosen;
+    }
 
-            int numOfEmployees= 0;
-
-            while (numOfEmployees<=0){
-                System.out.println("How many employees has " + contact.getCompanyName() + "?");
-                String num= scanner.nextLine().trim();
-                    numOfEmployees=Integer.parseInt(num);
-                    if(numOfEmployees<=0){
-                        throw new IllegalArgumentException("Number of employees must be above 0");
-                    }
+    public static int askEmployees(){
+        int numOfEmployees= 0;
+        boolean validNumOfEmployees = false;
+        while (!validNumOfEmployees){
+            System.out.println("How many employees has this company?");
+            String num= scanner.nextLine().trim();
+            try{
+                numOfEmployees=Integer.parseInt(num);
+                validNumOfEmployees = checkEmployees(numOfEmployees);
+            }catch (NumberFormatException e){
+                System.out.println("Type a valid number format");
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
+        }
+        return numOfEmployees;
+    }
 
-            Boolean validCityName=false;
-            String cityName="";
-            while(!validCityName){
-                System.out.println("In which city is " + contact.getCompanyName() +" located?");
-                cityName=scanner.nextLine().trim();
-                    if(cityName.isBlank()){
-                        throw new IllegalArgumentException("City cannot be blank");
-                    }
-                    validCityName=true;
+    public static String askCity(){
+        Boolean validCityName=false;
+        String cityName="";
+        while(!validCityName){
+            System.out.println("In which city is this company located?");
+            cityName=scanner.nextLine().trim();
+            try{
+                validCityName=checkCity(cityName);
+            }catch (NullPointerException e) {
+                System.out.println("City cannot be null");
+            }catch (IllegalArgumentException e){
+                System.out.println(e.getMessage());
             }
+        }
+        return cityName;
+    }
 
+    public static String askCountry(){
             Boolean validCountryName=false;
             String countryName="";
             while(!validCountryName){
-                System.out.println("In which Country is " + contact.getCompanyName() +" located?");
+                System.out.println("In which Country is this company located?");
                 countryName=scanner.nextLine().trim();
+                try{
+                    validCountryName=checkCountry(countryName);
 
-                if(countryName.isBlank()){
-                    throw new IllegalArgumentException("Country cannot be blank");
+                }catch (NullPointerException e) {
+                    System.out.println("Country cannot be null");
+                }catch (IllegalArgumentException e){
+                    System.out.println(e.getMessage());
                 }
-                validCountryName=true;
+
             }
-
-            return new Account(numOfEmployees,cityName, countryName, contact, opportunity, industryChosen);
-
-        }catch (NullPointerException e) {
-            System.out.println("Null values are not allowed");
-        }catch (NumberFormatException e) {
-            System.out.println("Type a valid number format");
-        }catch (IllegalArgumentException e){
-            System.out.println(e.getMessage());
-        }
-
-        return null;
-
+            return countryName;
     }
 }

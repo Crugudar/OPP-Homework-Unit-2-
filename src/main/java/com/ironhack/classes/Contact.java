@@ -40,13 +40,11 @@ public class Contact {
 
     @Override
     public String toString() {
-        return "Contact{" +
-                "name='" + name + '\'' +
-                ", phoneNumber=" + phoneNumber +
-                ", email='" + email + '\'' +
-                ", companyName='" + companyName + '\'' +
-                ", contactId=" + contactId +
-                '}';
+        return "Contact: " +
+                "\n  name = " + name +
+                ", \n  phoneNumber = " + phoneNumber +
+                ", \n  email = " + email  +
+                ", \n  companyName = " + companyName;
     }
 
     @Override

@@ -46,12 +46,11 @@ public class Opportunity {
 
     @Override
     public String toString() {
-        return "Opportunity " +
-                "product=" + product +
-                "\namount=" + quantity +
-                ", \ndecisionMaker=" + decisionMaker +
-                ", \nstatus=" + status +
-                ", \nopportunityId=" + opportunityId;
+        return "Opportunity " + opportunityId+
+                "\nproduct = " + product +
+                "\namount = " + quantity +
+                ", \nstatus = " + status +
+                ", \n" + decisionMaker;
     }
 
     @Override
