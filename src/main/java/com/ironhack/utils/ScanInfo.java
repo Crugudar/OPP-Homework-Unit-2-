@@ -11,7 +11,7 @@ import static com.ironhack.utils.Checker.checkCompName;
 public class ScanInfo {
     private static Scanner scanner = new Scanner(System.in);
 
-    public static Lead askLeadInfo(){
+    public static String askName(){
         Boolean validName=false;
         String name = "";
         while(!validName){
@@ -25,7 +25,10 @@ public class ScanInfo {
                 System.out.println(e.getMessage());
             }
         }
+        return name;
+    }
 
+    public static String askPhone(){
         Boolean validPhoneNum=false;
         String phone = "";
         while (!validPhoneNum) {
@@ -39,7 +42,10 @@ public class ScanInfo {
                 System.out.println(e.getMessage());
             }
         }
+        return phone;
+    }
 
+    public static String askEmail(){
         Boolean validEmail = false;
         String email = "";
         while (!validEmail) {
@@ -54,7 +60,10 @@ public class ScanInfo {
             }
 
         }
+        return email;
+    }
 
+    public static String askCompName(){
         Boolean validCompName = false;
         String compName = "";
         while (!validCompName) {
@@ -68,14 +77,10 @@ public class ScanInfo {
                 System.out.println(e.getMessage());
             }
         }
-
-        return new Lead(name, phone, email, compName);
-
+        return compName;
     }
 
-
-    public static Opportunity askOpportunityInfo(Contact decisionMaker){
-
+    public static Product askProduct(){
         Product productChosen = null;
         while (productChosen == null){
             System.out.println("What product is the client interested in??\n"+Product.HYBRID+"\n"+Product.FLATBED+"\n"+Product.BOX);
@@ -89,7 +94,10 @@ public class ScanInfo {
             }
 
         }
+        return productChosen;
+    }
 
+    public static int askQuantity(){
         int quantity = 0;
         boolean validQuantity = false;
         while (!validQuantity) {
@@ -105,12 +113,9 @@ public class ScanInfo {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-
-
         }
 
-        return new Opportunity(productChosen,quantity, decisionMaker);
-
+        return quantity;
     }
 
 

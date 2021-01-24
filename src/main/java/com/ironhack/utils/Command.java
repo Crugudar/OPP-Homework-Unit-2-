@@ -100,6 +100,7 @@ public class Command {
         opportunityList.put(opportunity.getOpportunityId(), opportunity);
     }
 
+
     public static void showLeads (HashMap < Integer, Lead > leadList){
 //        Por si nos da por transformar todas las leads en oportunidades y se queda esta lista vacía:
         if (leadList.isEmpty()){
