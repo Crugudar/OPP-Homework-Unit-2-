@@ -5,13 +5,13 @@ import java.util.List;
 
 public class Contact {
     private String name;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private String companyName;
     private final int contactId;
     private static int contactIdCounter = 0;
 
-    public Contact(String name, int phoneNumber, String email, String companyName) {
+    public Contact(String name, String phoneNumber, String email, String companyName) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -23,7 +23,7 @@ public class Contact {
         return name;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 

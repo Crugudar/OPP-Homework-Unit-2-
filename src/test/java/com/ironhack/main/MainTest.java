@@ -1,9 +1,10 @@
 package com.ironhack.main;
 
-import com.ironhack.classes.*;
-import org.junit.jupiter.api.*;
+import com.ironhack.classes.Lead;
+import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Scanner;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,21 +13,45 @@ class MainTest {
     HashMap<Integer, Lead> leadList=new HashMap<>();
     Scanner scanner = new Scanner(System.in);
 
-    @Test
-    void createNewLead_validParametersAndLeadList_Lead() {
-        Main.createNewLead("Ana Campos",  647321563,"ana@email.com", "Transportes Campos S.L.", leadList);
-        Lead test = new Lead("Ana Campos", 647321563,"ana@email.com", "Transportes Campos S.L.");
-        assertEquals(test, leadList.get(0));
-    }
-
-//    @Test
-//    void createNewLead_wrongParameters_IllegalArgumentException() {
-//
-//        assertThrows(IllegalArgumentException.class, () -> {Main.createNewLead("Ana Camp5os",  647321563,"ana@email.com", "Transportes Campos S.L.", leadList);});
-//    }
 
     @Test
-    void checkName() {
-        assertEquals(false, Main.checkName("Ana Camp5os"));
+    public void checkname_validname_name(){
+        assertEquals(true, Main.checkName("Pepa Pig"));
     }
+
+    @Test
+    public void checkname_errorname_error(){
+        assertThrows(IllegalArgumentException.class, ()-> Main.checkName("Pepa"));
+    }
+
+    @Test
+    public void checkphone_validphone_phone(){
+        assertEquals(true, Main.checkPhone("900876543"));
+    }
+
+    @Test
+    public void checkphone_errorphone_error(){
+        assertThrows(IllegalArgumentException.class, ()-> Main.checkPhone("767"));
+    }
+
+    @Test
+    public void checkemail_validemail_email(){
+        assertEquals(true, Main.checkEmail("uwu@uwu.es"));
+    }
+
+    @Test
+    public void checkemail_erroremail_error(){
+        assertThrows(IllegalArgumentException.class, ()-> Main.checkEmail("Pepa"));
+    }
+
+    @Test
+    public void checkCompany_validCompany_company(){
+        assertEquals(true, Main.checkCompName("UWU S.A."));
+    }
+
+    @Test
+    public void checkCompany_errorCompany_error(){
+        assertThrows(IllegalArgumentException.class, ()-> Main.checkCompName(""));
+    }
+
 }

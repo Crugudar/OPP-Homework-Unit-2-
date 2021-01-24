@@ -7,13 +7,13 @@ import java.util.*;
 
 public class Lead {
     private String name;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private String companyName;
     private final int leadId;
     private static int leadIdCounter = 0;
 
-    public Lead(String name, int phoneNumber, String email, String companyName) {
+    public Lead(String name, String phoneNumber, String email, String companyName) {
 
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -22,7 +22,7 @@ public class Lead {
         this.leadId = leadIdCounter++;
     }
 
-    public void convertToOpportunity(Scanner scanner, HashMap<Integer,Lead> leadHashMap,HashMap<Integer,Opportunity> opportunityHashMap) {
+    public void convertLeadToOpportunity(Scanner scanner, HashMap<Integer,Lead> leadHashMap,HashMap<Integer,Opportunity> opportunityHashMap) {
         Contact contact = new Contact(this.name, this.phoneNumber, this.email, this.companyName);
         Product productchosen = null;
         int quantity= 0;
@@ -162,7 +162,7 @@ public class Lead {
         return name;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
