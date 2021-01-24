@@ -4,14 +4,14 @@ import com.ironhack.enums.*;
 
 public class Opportunity {
     private Product product;
-    private int amount;
+    private int quantity;
     private Contact decisionMaker;
     private Status status;
     private int opportunityId;
     private static int opportunityIdCounter = 0;
 
-    public Opportunity(Product product, int amount, Contact decisionMaker) {
-        this.amount = amount;
+    public Opportunity(Product product, int quantity, Contact decisionMaker) {
+        this.quantity = quantity;
         this.opportunityId = opportunityIdCounter++;
         this.product = product;
         this.decisionMaker = decisionMaker;
@@ -38,11 +38,15 @@ public class Opportunity {
         return opportunityId;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
     @Override
     public String toString() {
         return "Opportunity{" +
                 "product=" + product +
-                ", amount=" + amount +
+                ", amount=" + quantity +
                 ", decisionMaker=" + decisionMaker +
                 ", status=" + status +
                 ", opportunityId=" + opportunityId +
