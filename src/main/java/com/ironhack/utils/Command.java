@@ -9,7 +9,9 @@ import static com.ironhack.utils.ScanInfo.*;
 
 public class Command {
 
-    public static void commandReader(String userInput, HashMap<Integer, Lead> leadList, HashMap<Integer, Opportunity> opportunityList) {
+    public static void commandReader(String userInput,
+                                     HashMap<Integer, Lead> leadList,
+                                     HashMap<Integer, Opportunity> opportunityList) {
 
         String[] arr = userInput.split(" ");
 
@@ -86,16 +88,24 @@ public class Command {
             }catch(ArrayIndexOutOfBoundsException e){
                 System.out.println("That is not a valid command");
             }
-
     }
 
-    public static void newLead (String name, String phone, String email, String compName, HashMap < Integer, Lead > leadList){
+
+    public static void newLead (String name,
+                                String phone,
+                                String email,
+                                String compName,
+                                HashMap < Integer,
+                                Lead > leadList){
+
         Lead lead = new Lead(name, phone, email, compName);
         leadList.put(lead.getLeadId(), lead);
         System.out.println("New lead created!!\n"+lead);
     }
 
+
     public static Contact createContact(Lead lead){
+
         String name = lead.getName();
         String phoneNumber = lead.getPhoneNumber();
         String email = lead.getEmail();
@@ -103,21 +113,37 @@ public class Command {
         return new Contact(name, phoneNumber, email, companyName);
     }
 
-    public static Opportunity createOpportunity(Product product, int quantity, Contact decisionMaker, HashMap<Integer, Opportunity> opportunityList){
+
+    public static Opportunity createOpportunity(Product product,
+                                                int quantity,
+                                                Contact decisionMaker,
+                                                HashMap<Integer, Opportunity> opportunityList){
+
         Opportunity opportunity = new Opportunity(product, quantity, decisionMaker);
         opportunityList.put(opportunity.getOpportunityId(), opportunity);
         return opportunity;
     }
 
-    public static Account createAccount(Industry industry, int numOfEmployees, String city, String country, Contact contact, Opportunity opportunity){
+
+    public static Account createAccount(Industry industry,
+                                        int numOfEmployees,
+                                        String city,
+                                        String country,
+                                        Contact contact,
+                                        Opportunity opportunity){
+
         return new Account(industry, numOfEmployees, city, country, contact,opportunity);
     }
 
-    public static void removeLead(int id, HashMap<Integer, Lead> leadList){
+
+    public static void removeLead(int id,
+                                  HashMap<Integer, Lead> leadList){
         leadList.remove(id);
     }
 
+
     public static void showLeads (HashMap < Integer, Lead > leadList){
+
 //        Por si nos da por transformar todas las leads en oportunidades y se queda esta lista vacía:
         if (leadList.isEmpty()){
 //            ¿Preferimos que nos salga un mensaje o una excepción?
@@ -130,7 +156,9 @@ public class Command {
         }
     }
 
+
     public static void showOpportunities (HashMap < Integer, Opportunity > opportunityList){
+
         if (opportunityList.isEmpty()){
 //            ¿Preferimos que nos salga un mensaje o una excepción?
             System.out.println("You haven't created any opportunity yet");
@@ -142,7 +170,10 @@ public class Command {
         }
     }
 
-    public static void lookupLead (String id, HashMap < Integer, Lead > leadList){
+
+    public static void lookupLead (String id,
+                                   HashMap < Integer, Lead > leadList){
+
         Integer leadId = Integer.parseInt(id);
         if (leadId < 0){
             throw new NumberFormatException();
@@ -152,10 +183,12 @@ public class Command {
             throw new NullPointerException();
         }
         System.out.println(lead);
-
     }
 
-    public static void lookupOpportunity (String id, HashMap < Integer, Opportunity > opportunityList){
+
+    public static void lookupOpportunity (String id,
+                                          HashMap < Integer, Opportunity > opportunityList){
+
         Integer opportunityId = Integer.parseInt(id);
         if (opportunityId < 0){
             throw new NumberFormatException();
@@ -167,7 +200,10 @@ public class Command {
         System.out.println(opportunity);
     }
 
-    public static void closeLost (String id, HashMap < Integer, Opportunity > opportunityList){
+
+    public static void closeLost (String id,
+                                  HashMap < Integer, Opportunity > opportunityList){
+
         Integer opportunityId = Integer.parseInt(id);
         if (opportunityId < 0){
             throw new NumberFormatException();
@@ -179,7 +215,10 @@ public class Command {
         opportunity.setStatus(Status.CLOSED_LOST);
     }
 
-    public static void closeWon (String id, HashMap < Integer, Opportunity > opportunityList){
+
+    public static void closeWon (String id,
+                                 HashMap < Integer, Opportunity > opportunityList){
+
         Integer opportunityId = Integer.parseInt(id);
         if (opportunityId < 0){
             throw new NumberFormatException();
@@ -189,10 +228,6 @@ public class Command {
             throw new NullPointerException();
         }
         opportunity.setStatus(Status.CLOSED_WON);
-    }
-
-//    necesitamos este?
-    public static void exit () {
     }
 
 }

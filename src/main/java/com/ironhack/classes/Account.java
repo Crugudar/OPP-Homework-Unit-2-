@@ -15,7 +15,12 @@ public class Account{
     private final int accountId;
     private static int accountIdCounter = 0;
 
-    public Account(Industry industry, int employeeCount, String city, String country, Contact contact, Opportunity opportunity) {
+    public Account(Industry industry,
+                   int employeeCount,
+                   String city,
+                   String country,
+                   Contact contact,
+                   Opportunity opportunity) {
         this.employeeCount = employeeCount;
         this.city = city;
         this.country = country;

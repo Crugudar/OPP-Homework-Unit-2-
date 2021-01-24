@@ -13,7 +13,10 @@ public class Lead {
     private final int leadId;
     private static int leadIdCounter = 0;
 
-    public Lead(String name, String phoneNumber, String email, String companyName) {
+    public Lead(String name,
+                String phoneNumber,
+                String email,
+                String companyName) {
 
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -56,6 +59,9 @@ public class Lead {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Lead lead = (Lead) o;
-        return phoneNumber == lead.phoneNumber && Objects.equals(name, lead.name) && Objects.equals(email, lead.email) && Objects.equals(companyName, lead.companyName);
+        return phoneNumber == lead.phoneNumber &&
+               Objects.equals(name, lead.name) &&
+               Objects.equals(email, lead.email) &&
+               Objects.equals(companyName, lead.companyName);
     }
 }

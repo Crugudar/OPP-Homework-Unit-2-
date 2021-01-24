@@ -75,12 +75,14 @@ public class Checker {
         return true;
     }
 
+
     public static boolean checkEmployees(int employees){
         if(employees<=0){
             throw new IllegalArgumentException("Number of employees must be above 0");
         }
         return true;
     }
+
 
     public static boolean checkCity(String city){
         if(city.isBlank()){
@@ -95,6 +97,7 @@ public class Checker {
         }
         return true;
     }
+
 
     public static boolean checkCountry(String country){
         if(country.isBlank()){

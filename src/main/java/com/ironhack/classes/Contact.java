@@ -10,7 +10,10 @@ public class Contact {
     private final int contactId;
     private static int contactIdCounter = 0;
 
-    public Contact(String name, String phoneNumber, String email, String companyName) {
+    public Contact(String name,
+                   String phoneNumber,
+                   String email,
+                   String companyName) {
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -52,6 +55,9 @@ public class Contact {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Contact contact = (Contact) o;
-        return Objects.equals(name, contact.name) && Objects.equals(phoneNumber, contact.phoneNumber) && Objects.equals(email, contact.email) && Objects.equals(companyName, contact.companyName);
+        return Objects.equals(name, contact.name) &&
+               Objects.equals(phoneNumber, contact.phoneNumber) &&
+               Objects.equals(email, contact.email) &&
+               Objects.equals(companyName, contact.companyName);
     }
 }

@@ -12,7 +12,9 @@ public class Opportunity {
     private int opportunityId;
     private static int opportunityIdCounter = 0;
 
-    public Opportunity(Product product, int quantity, Contact decisionMaker) {
+    public Opportunity(Product product,
+                       int quantity,
+                       Contact decisionMaker) {
         this.quantity = quantity;
         this.opportunityId = opportunityIdCounter++;
         this.product = product;
@@ -58,6 +60,9 @@ public class Opportunity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Opportunity that = (Opportunity) o;
-        return quantity == that.quantity && product == that.product && Objects.equals(decisionMaker, that.decisionMaker) && status == that.status;
+        return quantity == that.quantity &&
+               product == that.product &&
+               Objects.equals(decisionMaker, that.decisionMaker) &&
+               status == that.status;
     }
 }
