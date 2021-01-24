@@ -17,8 +17,14 @@ public class Main {
         HashMap<Integer, Lead> leadList=new HashMap<>();
         HashMap<Integer, Opportunity> opportunitiesList=new HashMap<>();
 
-        leadList.put(0,new Lead("Ana Campos", "647321563","ana@email.com", "Transportes Campos S.L."));
-        leadList.put(1,new Lead("Carlos Botijo", "647321593","carlos@email.com", "Transportes Botijo S.L."));
+        leadList.put(0,new Lead("Ana Campos",
+                                "647321563",
+                                "ana@email.com",
+                                "Transportes Campos S.L."));
+        leadList.put(1,new Lead("Carlos Botijo",
+                                "647321593",
+                                "carlos@email.com",
+                                "Transportes Botijo S.L."));
 
         System.out.println("Welcome to the best CRM you have ever seen");
 

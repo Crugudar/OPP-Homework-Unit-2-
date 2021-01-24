@@ -28,6 +28,7 @@ public class ScanInfo {
         return name;
     }
 
+
     public static String askPhone(){
         Boolean validPhoneNum=false;
         String phone = "";
@@ -44,6 +45,7 @@ public class ScanInfo {
         }
         return phone;
     }
+
 
     public static String askEmail(){
         Boolean validEmail = false;
@@ -63,6 +65,7 @@ public class ScanInfo {
         return email;
     }
 
+
     public static String askCompName(){
         Boolean validCompName = false;
         String compName = "";
@@ -80,6 +83,7 @@ public class ScanInfo {
         return compName;
     }
 
+
     public static Product askProduct(){
         Product productChosen = null;
         while (productChosen == null){
@@ -96,6 +100,7 @@ public class ScanInfo {
         }
         return productChosen;
     }
+
 
     public static int askQuantity(){
         int quantity = 0;
@@ -117,6 +122,7 @@ public class ScanInfo {
 
         return quantity;
     }
+
 
     public static Industry askIndustry(){
         Industry industryChosen = null;
@@ -155,6 +161,7 @@ public class ScanInfo {
         return industryChosen;
     }
 
+
     public static int askEmployees(){
         int numOfEmployees= 0;
         boolean validNumOfEmployees = false;
@@ -173,6 +180,7 @@ public class ScanInfo {
         return numOfEmployees;
     }
 
+
     public static String askCity(){
         Boolean validCityName=false;
         String cityName="";
@@ -189,6 +197,7 @@ public class ScanInfo {
         }
         return cityName;
     }
+
 
     public static String askCountry(){
             Boolean validCountryName=false;
