@@ -16,8 +16,8 @@ public class ScanInfo {
         String name = "";
         while(!validName){
             System.out.println("Please, provide a name");
-            name = scanner.nextLine();
             try {
+                name = scanner.nextLine();
                 validName = checkName(name);
             }catch (NullPointerException e) {
                 System.out.println("Null values are not allowed");
@@ -96,7 +96,6 @@ public class ScanInfo {
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
-
         }
         return productChosen;
     }
@@ -123,10 +122,8 @@ public class ScanInfo {
         return quantity;
     }
 
-
     public static Industry askIndustry(){
         Industry industryChosen = null;
-
         while (industryChosen==null){
             System.out.println("What industry does the client work on??\n" +
                     Industry.PRODUCE + "\n" +
@@ -136,31 +133,16 @@ public class ScanInfo {
                     Industry.OTHER);
 
             String industry = scanner.nextLine().trim().toUpperCase();
-
-            switch (industry){
-                case "PRODUCE":
-                    industryChosen=Industry.PRODUCE;
-                    break;
-                case "ECOMMERCE":
-                    industryChosen=Industry.ECOMMERCE;
-                    break;
-                case "MANUFACTURING":
-                    industryChosen=Industry.MANUFACTURING;
-                    break;
-                case "MEDICAL":
-                    industryChosen=Industry.MEDICAL;
-                    break;
-                case "OTHER":
-                    industryChosen=Industry.OTHER;
-                    break;
-                default:
-                    System.out.println("choose a valid Industry");
-
+            try {
+                industryChosen = checkIndustry(industry);
+            } catch (NullPointerException e) {
+                System.out.println("Null values are not allowed");
+            } catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
             }
         }
         return industryChosen;
     }
-
 
     public static int askEmployees(){
         int numOfEmployees= 0;

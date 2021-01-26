@@ -50,6 +50,7 @@ public class Checker {
 
 
     public static Product checkProduct(String product){
+        product = product.toLowerCase();
         Product productChosen = null;
         switch (product){
             case "hybrid":
@@ -73,6 +74,31 @@ public class Checker {
             throw new IllegalArgumentException("Quantity must be above 0");
         }
         return true;
+    }
+
+    public static Industry checkIndustry(String industry){
+        industry = industry.toUpperCase();
+        Industry industryChosen = null;
+        switch (industry){
+            case "PRODUCE":
+                industryChosen=Industry.PRODUCE;
+                break;
+            case "ECOMMERCE":
+                industryChosen=Industry.ECOMMERCE;
+                break;
+            case "MANUFACTURING":
+                industryChosen=Industry.MANUFACTURING;
+                break;
+            case "MEDICAL":
+                industryChosen=Industry.MEDICAL;
+                break;
+            case "OTHER":
+                industryChosen=Industry.OTHER;
+                break;
+            default:
+                throw new IllegalArgumentException("Choose a valid Industry");
+        }
+        return industryChosen;
     }
 
 
