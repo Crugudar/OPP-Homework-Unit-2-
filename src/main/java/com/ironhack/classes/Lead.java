@@ -10,6 +10,7 @@ public class Lead {
     private String phoneNumber;
     private String email;
     private String companyName;
+    //This allows us to generate ids that don't repeat
     private final int leadId;
     private static int leadIdCounter = 0;
 
