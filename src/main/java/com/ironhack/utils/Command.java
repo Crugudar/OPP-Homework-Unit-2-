@@ -30,14 +30,17 @@ public class Command {
                 case "convert":
                     int id = Integer.parseInt(arr[1]);
                     Contact contact = createContact(leadList.get(id));
+
                     Product product = askProduct();
                     int quantity = askQuantity();
                     Opportunity opportunity = createOpportunity(product, quantity, contact, opportunityList);
+
                     Industry industry = askIndustry();
                     int numOfEmployees = askEmployees();
                     String city = askCity();
                     String country = askCountry();
                     Account account = createAccount(industry, numOfEmployees, city, country, contact, opportunity);
+
                     removeLead(id, leadList);
 
                     break;

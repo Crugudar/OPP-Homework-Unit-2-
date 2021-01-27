@@ -136,4 +136,33 @@ class CommandTest {
         assertThrows(NullPointerException.class, () -> {Command.closeLost("0", opportunityListTest);});
     }
 
+    @Test
+    void lookupLead_invalidValues_NumberFormatException() {
+        assertThrows(NumberFormatException.class, () -> Command.lookupLead("-1", leadListTest));
+    }
+
+    @Test
+    void lookupLead_nullId_NullPointerException() {
+        assertThrows(NumberFormatException.class, () -> Command.lookupLead(null, leadListTest));
+    }
+
+    @Test
+    void lookupLead_nullLead_NullPointerException() {
+        assertThrows(NullPointerException.class, () -> Command.lookupLead("345", leadListTest));
+    }
+
+    @Test
+    void lookupOpportunity_invalidValues_NumberFormatException() {
+        assertThrows(NumberFormatException.class, () -> Command.lookupOpportunity("-1", opportunityListTest));
+    }
+
+    @Test
+    void lookupOpportunity_nullId_NullPointerException() {
+        assertThrows(NumberFormatException.class, () -> Command.lookupOpportunity(null, opportunityListTest));
+    }
+
+    @Test
+    void lookupOpportunity_nullLead_NullPointerException() {
+        assertThrows(NullPointerException.class, () -> Command.lookupOpportunity("345", opportunityListTest));
+    }
 }

@@ -2,6 +2,7 @@ package com.ironhack.main;
 
 import com.ironhack.classes.Lead;
 import com.ironhack.classes.Opportunity;
+import com.ironhack.utils.*;
 
 import java.util.HashMap;
 import java.util.Scanner;
@@ -17,11 +18,11 @@ public class Main {
         HashMap<Integer, Lead> leadList=new HashMap<>();
         HashMap<Integer, Opportunity> opportunitiesList=new HashMap<>();
 
-        leadList.put(0,new Lead("Ana Campos",
+        leadList.put(0, new Lead("Ana Campos",
                                 "647321563",
                                 "ana@email.com",
                                 "Transportes Campos S.L."));
-        leadList.put(1,new Lead("Carlos Botijo",
+        leadList.put(1, new Lead("Carlos Botijo",
                                 "647321593",
                                 "carlos@email.com",
                                 "Transportes Botijo S.L."));
@@ -29,6 +30,8 @@ public class Main {
         System.out.println("Welcome to the best CRM you have ever seen");
 
         String userInput="";
+
+        Command.lookupLead(null, leadList);
 
         while (!userInput.equals("exit")){
             showMainMenu();

@@ -76,6 +76,7 @@ public class Checker {
         return true;
     }
 
+
     public static Industry checkIndustry(String industry){
         industry = industry.toUpperCase();
         Industry industryChosen = null;
