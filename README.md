@@ -4,7 +4,7 @@ Welcome to the best CRM in the world!
 
 Before starting, we want to tell you how our project is organized.
 
-We have created two principal classes (src/main/java/com/ironhack/classes/): 
+We have created four principal classes (src/main/java/com/ironhack/classes/): 
 * Lead: the person we want to pervert
 * Contact: the contact information of the person we have perverted
 * Opportunity: the information of what will we probably sell
@@ -43,3 +43,13 @@ When you run our program, the following menu will appear:
 Those are all the commands you can use, they are all case insensitive and were made error-proof. This menu will show until you type "exit" (or any phrase beggining with exit :P).
 
 From this moment, the program works as requested by the OPP Homework. Remember that you cannot convert a Lead to Opportunity if it doesn't exists, and all of those obvious things. But don't worry, we have managed all exceptions so you can act as a dumb monkey if you want c: have fun!
+
+
+## TDD
+
+Yes, we also had to do some testing. We have to confess that this wasn't fun, but our program now is robust as a rock! (We can discuss if it was worth it later...)
+
+The "Test" classes are inside src/test/java/com/ironhack/utils/:
+* ScanInfoTest
+* CheckerTest
+* CommandTest
