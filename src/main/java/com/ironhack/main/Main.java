@@ -18,8 +18,8 @@ public class Main {
         Scanner myScanner = new Scanner(System.in);
         HashMap<Integer, Lead> leadList=new HashMap<>();
         HashMap<Integer, Opportunity> opportunitiesList=new HashMap<>();
-        leadList.put(0,new Lead("Ana Campos", 647321563,"ana@email.com", "Transportes Campos S.L."));
-        leadList.put(1,new Lead("Carlos Botijo", 647321593,"carlos@email.com", "Transportes Botijo S.L."));
+        leadList.put(0,new Lead("Ana Campos", "647321563","ana@email.com", "Transportes Campos S.L."));
+        leadList.put(1,new Lead("Carlos Botijo", "647321593","carlos@email.com", "Transportes Botijo S.L."));
 
 
         System.out.println("Welcome to the best CRM you have ever seen");
@@ -94,7 +94,7 @@ public class Main {
                         Opportunity lostOpportunity=opportunitiesList.get(Integer.parseInt(arr[1]));
                         lostOpportunity.setStatus(Status.CLOSED_LOST);
                     }catch (NumberFormatException e){
-                        System.out.println("type a valid id for converting");
+                        System.out.println("Type a valid id for converting");
                         userInput="";
                     }
                     break;
@@ -104,7 +104,7 @@ public class Main {
                         Opportunity wonOpportunity=opportunitiesList.get(Integer.parseInt(arr[1]));
                         wonOpportunity.setStatus(Status.CLOSED_WON);
                     }catch (NumberFormatException e){
-                        System.out.println("type a valid id for converting");
+                        System.out.println("Type a valid id for converting");
                         userInput="";
                     }
 
@@ -114,116 +114,119 @@ public class Main {
                     userInput="exit";
                     break;
                 default:
-                    System.out.println("that is not a valid command");
+                    System.out.println("That is not a valid command");
                     userInput="";
-
             }
         }
-
     }
 
     public static void createNewLead(Scanner scanner, HashMap<Integer,Lead>leadMap){
         Boolean validName=false;
         String name="";
         while(!validName){
-            System.out.println("Please, provide a name");
-            name=scanner.nextLine();
-
             try{
-                if(!name.trim().contains(" ")){
-                    System.out.println("The name format must be Name Lastname");
-                }else{
-                    char[] chars = name.toCharArray();
-                    for(char c : chars){
-                        if (Character.isDigit(c)){
-                            throw new IllegalArgumentException("Name cannot contain numbers");
-                        }
-                    }
-                    validName=true;
-                }
-            }catch (NullPointerException e){
+                System.out.println("Please, provide a name");
+                name=scanner.nextLine();
+                validName = checkName(name);
+            }catch (NullPointerException e) {
                 System.out.println("Name cannot be null");
-            }catch (IllegalArgumentException e){
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
         }
 
         Boolean validPhoneNum=false;
-
-        int phone=0;
+        String phone = "";
         while(!validPhoneNum){
-            System.out.println("Please, provide a phone number");
-            String phoneNum=scanner.nextLine().trim();
-            try{
-                    ;
-                    if (phoneNum.matches("\\d{9}")&&(phoneNum.charAt(0)=='6'||phoneNum.charAt(0)=='9')) {
-                        phone=Integer.parseInt(phoneNum);
-                        validPhoneNum = true;
-                    }else{
-                        throw new IllegalArgumentException("Your number must be 9 characters long and begin with 9 or 6");
-                    }
-
-            }catch (NullPointerException e){
-                System.out.println("Telephone cannot be null");
-            }catch (NumberFormatException e){
-                System.out.println("Check again the format of the provided phone");
-            }catch (IllegalArgumentException e){
+            try {
+                System.out.println("Please, provide a phone number");
+                phone = scanner.nextLine().trim();
+                validPhoneNum=checkPhone(phone);
+            }catch (NullPointerException e) {
+                System.out.println("Phone number cannot be null");
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
         }
 
         Boolean validEmail=false;
         String email="";
         while(!validEmail){
-            System.out.println("Please, provide an email");
-            email=scanner.nextLine().trim();
             try{
-
-                //https://unipython.com/validar-un-email-en-java/
-
-                Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+"[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
-                Matcher mather = pattern.matcher(email);
-
-                if (mather.find() == true) {
-                    validEmail=true;
-                } else {
-                    throw new IllegalArgumentException("El email ingresado es inválido.");
-                }
-
+                System.out.println("Please, provide an email");
+                email=scanner.nextLine().trim();
+                validEmail=checkEmail(email);
             }catch (NullPointerException e) {
                 System.out.println("Email cannot be null");
-            }catch (IllegalArgumentException e){
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
         }
 
         Boolean validCompName=false;
         String compName="";
         while(!validCompName){
-            System.out.println("Please, provide a Company name");
-            compName=scanner.nextLine().trim();
             try{
-                if(compName.isBlank()){
-                    throw new IllegalArgumentException("company name cannot be blank");
-                }
-
-                validCompName=true;
-
+                System.out.println("Please, provide a Company name");
+                compName=scanner.nextLine().trim();
+                validCompName=checkCompName(compName);
             }catch (NullPointerException e) {
                 System.out.println("Company name cannot be null");
-            }catch (IllegalArgumentException e){
+            }catch (IllegalArgumentException e) {
+                System.out.println(e.getMessage());
+            }catch (Exception e) {
                 System.out.println(e.getMessage());
             }
-
         }
 
         Lead lead =new Lead(name,phone,email,compName);
         leadMap.put(lead.getLeadId(), lead);
-
         System.out.println("New lead created!!\n"+lead);
 
+    }
+
+    public static boolean checkName(String name) {
+
+        if (!name.trim().contains(" ")) {
+            throw new IllegalArgumentException("The name format must be Name Lastname");
+        } else {
+            char[] chars = name.toCharArray();
+            for (char c : chars) {
+                if (Character.isDigit(c)) {
+                    throw new IllegalArgumentException("Name cannot contain numbers");
+                }
+            }
+        }
+        return true;
+    }
+
+    public static boolean checkPhone(String phoneNum){
+        if (phoneNum.matches("\\d{9}")&&(phoneNum.charAt(0)=='6'||phoneNum.charAt(0)=='9')) {
+            return true;
+        }
+        throw new IllegalArgumentException("Check again the format of the provided phone");
+    }
+
+    public static boolean checkEmail(String email){
+        //https://unipython.com/validar-un-email-en-java/
+
+        Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+"[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
+        if(pattern.matcher(email).find()){
+            return true;
+        }
+        throw new IllegalArgumentException("Not valid email");
+    }
+
+    public static boolean checkCompName(String compName){
+        if(!compName.isBlank()){
+            return true;
+        }
+        throw new IllegalArgumentException("Company name cannot be blank");
     }
 }

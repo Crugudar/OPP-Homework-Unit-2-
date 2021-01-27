@@ -8,13 +8,13 @@ import java.util.Scanner;
 
 public class Lead {
     private String name;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private String companyName;
     private final int leadId;
     private static int leadIdCounter = 0;
 
-    public Lead(String name, int phoneNumber, String email, String companyName) {
+    public Lead(String name, String phoneNumber, String email, String companyName) {
 
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -163,7 +163,7 @@ public class Lead {
         return name;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
