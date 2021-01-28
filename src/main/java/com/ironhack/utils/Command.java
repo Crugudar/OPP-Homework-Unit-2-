@@ -119,7 +119,7 @@ public class Command {
 
                 case "exit":
                     //ONLY COMMAND THAT EXITS THE APPLICATION
-                    System.out.println("Thank you for using the best CRM in the world");
+                    System.out.println((char)27 + "[46m" + (char)27 + "[30mThank you for using the best CRM in the world");
                     exitSound.playSound();
                     bipSound.closeSound();
                     errorSound.closeSound();
@@ -153,7 +153,7 @@ public class Command {
 
         Lead lead = new Lead(name, phone, email, compName);
         leadList.put(lead.getLeadId(), lead);
-        System.out.println("New lead created!!\n"+lead);
+        System.out.println((char)27 + "[32mNew lead created!!\n"+lead);
     }
 
     //Receives the lead info and creates Contact
@@ -275,8 +275,16 @@ public class Command {
         if (opportunity == null){
             throw new NullPointerException();
         }
-        opportunity.setStatus(Status.CLOSED_LOST);
-        opportunity.toString();
+
+        //status will be changed if it's not already set to closed-lost (that makes sense, right?)
+        if (opportunity.getStatus() != Status.CLOSED_LOST){
+            opportunity.setStatus(Status.CLOSED_LOST);
+            opportunity.toString();
+            System.out.println((char)27 + "[32mOpportunity closed-lost");
+        } else {
+            System.out.println((char)27 + "[39mOpportunity was already closed-lost");
+        }
+
     }
 
     //Change opportunity status, receives opportunity id and List
@@ -295,8 +303,15 @@ public class Command {
         if (opportunity == null){
             throw new NullPointerException();
         }
-        opportunity.setStatus(Status.CLOSED_WON);
-        opportunity.toString();
+
+        //status will be changed if it's not already set to closed-won (that makes sense, right?)
+        if (opportunity.getStatus() != Status.CLOSED_WON){
+            opportunity.setStatus(Status.CLOSED_WON);
+            opportunity.toString();
+            System.out.println((char)27 + "[32mOpportunity closed-won");
+        } else {
+            System.out.println((char)27 + "[39mOpportunity was already closed-won");
+        }
     }
 
 }
