@@ -48,7 +48,7 @@ public class Lead {
 
     @Override
     public String toString() {
-        return "Lead " + leadId +
+        return (char)27 + "[34mLead " + leadId +
                 "\nname = " + name +
                 ", \nphoneNumber = " + phoneNumber +
                 ", \nemail = " + email +

@@ -9,13 +9,13 @@ public class Checker {
     public static boolean checkName(String name) {
         if (!name.trim().contains(" ")) {
             //make sure we have name and lastName
-            throw new IllegalArgumentException("The name format must be Name Lastname");
+            throw new IllegalArgumentException((char)27 + "[31mThe name format must be Name Lastname");
         } else {
             //make sure all characters are letters
             char[] chars = name.toCharArray();
             for (char c : chars) {
                 if (Character.isDigit(c)) {
-                    throw new IllegalArgumentException("Name cannot contain numbers");
+                    throw new IllegalArgumentException((char)27 + "[31mName cannot contain numbers");
                 }
             }
         }
@@ -32,7 +32,7 @@ public class Checker {
         if (phoneNum.matches("\\d{9}")&&(phoneNum.charAt(0)=='6'||phoneNum.charAt(0)=='9')) {
             return true;
         }
-        throw new IllegalArgumentException("Invalid phone format");
+        throw new IllegalArgumentException((char)27 + "[31mInvalid phone format");
     }
 
 
@@ -48,7 +48,7 @@ public class Checker {
         if(pattern.matcher(email).find()){
             return true;
         }
-        throw new IllegalArgumentException("Not valid email");
+        throw new IllegalArgumentException((char)27 + "[31mNot valid email");
     }
 
 
@@ -57,7 +57,7 @@ public class Checker {
         if(!compName.isBlank()){
             return true;
         }
-        throw new IllegalArgumentException("Company name cannot be blank");
+        throw new IllegalArgumentException((char)27 + "[31mCompany name cannot be blank");
     }
 
 
@@ -76,7 +76,7 @@ public class Checker {
                 productChosen = Product.BOX;
                 break;
             default:
-                throw new IllegalArgumentException("Choose a valid product");
+                throw new IllegalArgumentException((char)27 + "[31mChoose a valid product");
         }
         return productChosen;
     }
@@ -84,7 +84,7 @@ public class Checker {
 
     public static boolean checkQuantity(int quantity){
         if (quantity <= 0) {
-            throw new IllegalArgumentException("Quantity must be above 0");
+            throw new IllegalArgumentException((char)27 + "[31mQuantity must be above 0");
         }
         return true;
     }
@@ -112,7 +112,7 @@ public class Checker {
                 industryChosen=Industry.OTHER;
                 break;
             default:
-                throw new IllegalArgumentException("Choose a valid Industry");
+                throw new IllegalArgumentException((char)27 + "[31mChoose a valid Industry");
         }
         return industryChosen;
     }
@@ -121,7 +121,7 @@ public class Checker {
     public static boolean checkEmployees(int employees){
         //Only limit is 0 or below, we love big corporations
         if(employees<=0){
-            throw new IllegalArgumentException("Number of employees must be above 0");
+            throw new IllegalArgumentException((char)27 + "[31mNumber of employees must be above 0");
         }
         return true;
     }
@@ -131,13 +131,13 @@ public class Checker {
         //Okey, here we were tempted to make a list with cities but we have a life
         //Make sure is not blank
         if(city.isBlank()){
-            throw new IllegalArgumentException("City cannot be blank");
+            throw new IllegalArgumentException((char)27 + "[31mCity cannot be blank");
         }else {
             //Make sure it doesn't contain numbers
             char[] chars = city.toCharArray();
             for (char c : chars) {
                 if (Character.isDigit(c)) {
-                    throw new IllegalArgumentException("City cannot contain numbers");
+                    throw new IllegalArgumentException((char)27 + "[31mCity cannot contain numbers");
                 }
             }
         }
@@ -151,13 +151,13 @@ public class Checker {
 
         //Make sure is not blank
         if(country.isBlank()){
-            throw new IllegalArgumentException("Country cannot be blank");
+            throw new IllegalArgumentException((char)27 + "[31mCountry cannot be blank");
         }else {
             //Make sure it doesn't contain numbers
             char[] chars = country.toCharArray();
             for (char c : chars) {
                 if (Character.isDigit(c)) {
-                    throw new IllegalArgumentException("Country cannot contain numbers");
+                    throw new IllegalArgumentException((char)27 + "[31mCountry cannot contain numbers");
                 }
             }
         }
