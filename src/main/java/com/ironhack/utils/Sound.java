@@ -1,6 +1,6 @@
+// A fancy audio player
+// Original code was simplified, you can check it here: https://www.geeksforgeeks.org/play-audio-file-using-java/
 package com.ironhack.utils;
-// Java program to play an Audio
-// file using Clip Object 
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
@@ -26,7 +26,7 @@ public class Sound {
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
 
-
+        // nobody likes exceptions
         }catch (UnsupportedAudioFileException e){
 
         }catch (LineUnavailableException e){
@@ -38,13 +38,13 @@ public class Sound {
     public void playSound(){
         try
         {
-            // open audioInputStream to the clip
+            // this makes our file only play once
             clip.loop(0);
-            //Sounds audioPlayer = new Sounds();
+            // every time the method is executed, we set the sound starting position to 0
             clip.setMicrosecondPosition(0);
             clip.start();
             new Scanner(System.in).nextLine();
-            clip.stop();
+            clip.stop(); // enough, thank you!
         }
 
         catch (Exception ex)
@@ -55,6 +55,7 @@ public class Sound {
         }
     }
 
+    // This closes the file, so we won't have problems executing and opening the file again
     public void closeSound(){
         clip.close();
     }

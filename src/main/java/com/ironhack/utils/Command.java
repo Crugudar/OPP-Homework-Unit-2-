@@ -64,8 +64,8 @@ public class Command {
                     //the next two methods are also below
                     Account account = createAccount(industry, numOfEmployees, city, country, contact, opportunity);
                     removeLead(id, leadList);
+                    System.out.println((char)27 + "[32mNew opportunity created!!\n"+opportunity);
                     bipSound.playSound();
-
                     break;
                 case "show":
                     switch (arr[1]) {
