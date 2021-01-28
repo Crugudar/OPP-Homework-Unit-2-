@@ -9,6 +9,7 @@ public class Opportunity {
     private int quantity;
     private Contact decisionMaker;
     private Status status;
+    //This allows us to generate ids that don't repeat
     private int opportunityId;
     private static int opportunityIdCounter = 0;
 

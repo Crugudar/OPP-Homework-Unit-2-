@@ -11,6 +11,7 @@ public class Account {
     private String country;
     private List<Contact> contactList = new ArrayList<>();
     private List<Opportunity> opportunityList = new ArrayList<>();
+    //This allows us to generate ids that don't repeat
     private final int accountId;
     private static int accountIdCounter = 0;
 

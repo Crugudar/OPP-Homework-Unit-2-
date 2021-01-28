@@ -38,23 +38,24 @@ class CommandTest {
         invalidAccount = new Account(Industry.ECOMMERCE, 2, "Narnia", "Narnia", contactInvalidTest, opportunityInvalidTest);
     }
 
-    @Test
-    void newLead_validLead_lead() {
-//        This id will be 1:
-        Command.newLead("Carlos Botijo", "647321593","carlos@email.com", "Transportes Botijo S.L.", leadListTest);
-
-        assertEquals(testValid, leadListTest.get(leadListTest.keySet().toArray()[0]));
+    @AfterEach
+    void tearDown() {
         leadListTest.clear();
     }
 
     @Test
+    void newLead_validLead_lead() {
+        Command.newLead("Carlos Botijo", "647321593","carlos@email.com", "Transportes Botijo S.L.", leadListTest);
+
+        assertEquals(testValid, leadListTest.get(leadListTest.keySet().toArray()[0]));
+    }
+
+    @Test
     void newLead_invalidLead_lead() {
-//        This id will be 1:
         Command.newLead("Carlos Boti4jo", "647321593","carlos@email.com", "Transportes Botijo S.L.", leadListTest);
 
         assertEquals(testInvalid, leadListTest.get(leadListTest.keySet().toArray()[0]));
 //        No problem, because this will be managed by Checker
-        leadListTest.clear();
     }
 
     @Test
@@ -104,7 +105,6 @@ class CommandTest {
         Command.removeLead(7, leadListTest);
 //        Nothing happens, the value in index 7 is just null
         assertTrue(leadListTest.size() == 1);
-        leadListTest.clear();
     }
 
     @Test

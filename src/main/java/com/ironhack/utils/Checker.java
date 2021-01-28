@@ -8,8 +8,10 @@ public class Checker {
 
     public static boolean checkName(String name) {
         if (!name.trim().contains(" ")) {
+            //make sure we have name and lastName
             throw new IllegalArgumentException("The name format must be Name Lastname");
         } else {
+            //make sure all characters are letters
             char[] chars = name.toCharArray();
             for (char c : chars) {
                 if (Character.isDigit(c)) {
@@ -22,6 +24,11 @@ public class Checker {
 
 
     public static boolean checkPhone(String phoneNum){
+
+        //...........................................................
+        //use regular expressions to check the phone format, also we asumed phone numbers had to be from Spain
+        //...........................................................
+
         if (phoneNum.matches("\\d{9}")&&(phoneNum.charAt(0)=='6'||phoneNum.charAt(0)=='9')) {
             return true;
         }
@@ -30,7 +37,11 @@ public class Checker {
 
 
     public static boolean checkEmail(String email){
-        //https://unipython.com/validar-un-email-en-java/
+
+        //...........................................................
+        //use regular expressions to check the phone format, you can check it in this page: https://unipython.com/validar-un-email-en-java/
+        //...........................................................
+
 
         Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"+
                                           "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
@@ -42,6 +53,7 @@ public class Checker {
 
 
     public static boolean checkCompName(String compName){
+        //the only requisite for company name is that it is not a blank or various blank spaces
         if(!compName.isBlank()){
             return true;
         }
@@ -50,6 +62,7 @@ public class Checker {
 
 
     public static Product checkProduct(String product){
+        //transform to lower case to fit in the switch
         product = product.toLowerCase();
         Product productChosen = null;
         switch (product){
@@ -78,6 +91,8 @@ public class Checker {
 
 
     public static Industry checkIndustry(String industry){
+        //transform to upper case to fit in the switch
+        //(yeahhh we know... we like to change things up and spice it up a little bit)
         industry = industry.toUpperCase();
         Industry industryChosen = null;
         switch (industry){
@@ -104,6 +119,7 @@ public class Checker {
 
 
     public static boolean checkEmployees(int employees){
+        //Only limit is 0 or below, we love big corporations
         if(employees<=0){
             throw new IllegalArgumentException("Number of employees must be above 0");
         }
@@ -112,9 +128,12 @@ public class Checker {
 
 
     public static boolean checkCity(String city){
+        //Okey, here we were tempted to make a list with cities but we have a life
+        //Make sure is not blank
         if(city.isBlank()){
             throw new IllegalArgumentException("City cannot be blank");
         }else {
+            //Make sure it doesn't contain numbers
             char[] chars = city.toCharArray();
             for (char c : chars) {
                 if (Character.isDigit(c)) {
@@ -127,9 +146,14 @@ public class Checker {
 
 
     public static boolean checkCountry(String country){
+        // Again life is too short to make a list with all countries in the world,
+        // instead we made our laboratories perfect ;) ...(according to us)
+
+        //Make sure is not blank
         if(country.isBlank()){
             throw new IllegalArgumentException("Country cannot be blank");
         }else {
+            //Make sure it doesn't contain numbers
             char[] chars = country.toCharArray();
             for (char c : chars) {
                 if (Character.isDigit(c)) {

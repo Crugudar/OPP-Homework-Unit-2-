@@ -15,8 +15,11 @@ public class Main {
         //Create a Scanner to collect user input
         Scanner myScanner = new Scanner(System.in);
 
+        //Create two lists to store both leads and opportunities
         HashMap<Integer, Lead> leadList=new HashMap<>();
         HashMap<Integer, Opportunity> opportunitiesList=new HashMap<>();
+
+        //We create two Leads for starters so you don't need to create a lead yourself to test every command
 
         leadList.put(0, new Lead("Ana Campos",
                                 "647321563",
@@ -29,21 +32,25 @@ public class Main {
 
         System.out.println("Welcome to the best CRM you have ever seen");
 
+        //set userInput to an empty string to enter the next loop
         String userInput="";
 
+        //This loops runs until the user chooses the exit option
         while (!userInput.equals("exit")){
+
             showMainMenu();
-            // Get input from the user
+            // Get input from the user organized
             userInput = myScanner.nextLine()
                                  .toLowerCase()
                                  .trim();
 
+            //Go to utils Command to the this method functionality
             commandReader(userInput, leadList, opportunitiesList);
 
         }
     }
 
-
+// method that contains the menu
     public static void showMainMenu(){
         System.out.println("What do you want to do?:");
         System.out.println("- new lead");
