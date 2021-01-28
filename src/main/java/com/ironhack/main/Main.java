@@ -31,8 +31,6 @@ public class Main {
 
         String userInput="";
 
-        Command.lookupLead(null, leadList);
-
         while (!userInput.equals("exit")){
             showMainMenu();
             // Get input from the user
