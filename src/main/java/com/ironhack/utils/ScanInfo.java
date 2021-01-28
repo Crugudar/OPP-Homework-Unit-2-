@@ -19,13 +19,13 @@ public class ScanInfo {
         String name = "";
 
         while(!validName){
-            System.out.println("Please, provide a name");
+            System.out.println((char)27 + "[39mPlease, provide a name");
             try {
                 name = scanner.nextLine();
                 //Go to utils Checker to see the method
                 validName = checkName(name);
             }catch (NullPointerException e) {
-                System.out.println("Null values are not allowed");
+                System.out.println((char)27 + "[31mNull values are not allowed");
             } catch (IllegalArgumentException e) {
                 //This message comes from the checker method
                 System.out.println(e.getMessage());
@@ -42,13 +42,13 @@ public class ScanInfo {
         //Initialise phone to be able to access it inside the loop and return it
         String phone = "";
         while (!validPhoneNum) {
-            System.out.println("Please, provide a phone number");
+            System.out.println((char)27 + "[39mPlease, provide a phone number");
             phone = scanner.nextLine().trim();
             try {
                 //Go to utils Checker to see the method
                 validPhoneNum = checkPhone(phone);
             } catch (NullPointerException e) {
-                System.out.println("Null values are not allowed");
+                System.out.println((char)27 + "[31mNull values are not allowed");
             } catch (IllegalArgumentException e) {
                 //This message comes from the checker method
                 System.out.println(e.getMessage());
@@ -65,13 +65,13 @@ public class ScanInfo {
         //Initialise email to be able to access it inside the loop and return it
         String email = "";
         while (!validEmail) {
-            System.out.println("Please, provide an email");
+            System.out.println((char)27 + "[39mPlease, provide an email");
             email = scanner.nextLine().trim();
             try {
                 //Go to utils Checker to see the method
                 validEmail = checkEmail(email);
             } catch (NullPointerException e) {
-                System.out.println("Null values are not allowed");
+                System.out.println((char)27 + "[31mNull values are not allowed");
             } catch (IllegalArgumentException e) {
                 //This message comes from the checker method (first time you read this?)
                 System.out.println(e.getMessage());
@@ -89,13 +89,13 @@ public class ScanInfo {
         //Initialise company name to be able to access it inside the loop and return it
         String compName = "";
         while (!validCompName) {
-            System.out.println("Please, provide a Company name");
+            System.out.println((char)27 + "[39mPlease, provide a Company name");
             compName = scanner.nextLine().trim();
             try {
                 //Go to utils Checker to see the method
                 validCompName = checkCompName(compName);
             } catch (NullPointerException e) {
-                System.out.println("Null values are not allowed");
+                System.out.println((char)27 + "[31mNull values are not allowed");
             } catch (IllegalArgumentException e) {
                 //This message comes from the checker method
                 System.out.println(e.getMessage());
@@ -109,13 +109,13 @@ public class ScanInfo {
         //Set Product to null to enter the loop
         Product productChosen = null;
         while (productChosen == null){
-            System.out.println("What product is the client interested in??\n"+Product.HYBRID+"\n"+Product.FLATBED+"\n"+Product.BOX);
+            System.out.println((char)27 + "[39mWhat product is the client interested in??\n"+Product.HYBRID+"\n"+Product.FLATBED+"\n"+Product.BOX);
             String product= scanner.nextLine().trim().toLowerCase();
             try {
                 //Go to utils Checker to see the method
                 productChosen = checkProduct(product);
             } catch (NullPointerException e) {
-                System.out.println("Null values are not allowed");
+                System.out.println((char)27 + "[31mNull values are not allowed");
             } catch (IllegalArgumentException e) {
                 //This message comes from the checker method
                 System.out.println(e.getMessage());
@@ -132,7 +132,7 @@ public class ScanInfo {
         //Set a boolean to false to enter the loop
         boolean validQuantity = false;
         while (!validQuantity) {
-            System.out.println("How many units?");
+            System.out.println((char)27 + "[39mHow many units?");
             String num = scanner.nextLine().trim();
             try {
 
@@ -143,9 +143,9 @@ public class ScanInfo {
                 validQuantity = checkQuantity(quantity);
 
             } catch (NullPointerException e) {
-                System.out.println("Null values are not allowed");
+                System.out.println((char)27 + "[31mNull values are not allowed");
             } catch (NumberFormatException e) {
-                System.out.println("Type a valid number format");
+                System.out.println((char)27 + "[31mType a valid number format");
             } catch (IllegalArgumentException e) {
                 // Guess where does this message come from....
                 // YEEEEEEEEESSSSSS!!!
@@ -161,7 +161,7 @@ public class ScanInfo {
         //Set Industry to null to enter the loop
         Industry industryChosen = null;
         while (industryChosen==null){
-            System.out.println("What industry does the client work on??\n" +
+            System.out.println((char)27 + "[39mWhat industry does the client work on??\n" +
                     Industry.PRODUCE + "\n" +
                     Industry.ECOMMERCE + "\n" +
                     Industry.MANUFACTURING + "\n" +
@@ -173,7 +173,7 @@ public class ScanInfo {
                 //Go to utils Checker to see the method
                 industryChosen = checkIndustry(industry);
             } catch (NullPointerException e) {
-                System.out.println("Null values are not allowed");
+                System.out.println((char)27 + "[31mNull values are not allowed");
             } catch (IllegalArgumentException e) {
                 //This message comes from the checker method
                 System.out.println(e.getMessage());
@@ -188,7 +188,7 @@ public class ScanInfo {
         //Set a boolean to false to enter the loop
         boolean validNumOfEmployees = false;
         while (!validNumOfEmployees){
-            System.out.println("How many employees has this company?");
+            System.out.println((char)27 + "[39mHow many employees has this company?");
             String num= scanner.nextLine().trim();
             try{
                 //if parse int throws a Exception it is caught below
@@ -196,7 +196,7 @@ public class ScanInfo {
                 //Go to utils Checker to see the method
                 validNumOfEmployees = checkEmployees(numOfEmployees);
             }catch (NumberFormatException e){
-                System.out.println("Type a valid number format");
+                System.out.println((char)27 + "[31mType a valid number format");
             }catch (IllegalArgumentException e){
                 //What do we call a dog with fever???
                 //If you know the answer write any of the JAVAdabaduhhhh crew and tell us!!
@@ -215,13 +215,13 @@ public class ScanInfo {
         //Initialise city name to be able to access it inside the loop and return it
         String cityName="";
         while(!validCityName){
-            System.out.println("In which city is this company located?");
+            System.out.println((char)27 + "[39mIn which city is this company located?");
             cityName=scanner.nextLine().trim();
             try{
                 //Go to utils Checker to see the method
                 validCityName=checkCity(cityName);
             }catch (NullPointerException e) {
-                System.out.println("City cannot be null");
+                System.out.println((char)27 + "[31mCity cannot be null");
             }catch (IllegalArgumentException e){
                 //This message comes from the checker method
                 System.out.println(e.getMessage());
@@ -238,14 +238,14 @@ public class ScanInfo {
         //Initialise country name to be able to access it inside the loop and return it
         String countryName="";
         while(!validCountryName){
-            System.out.println("In which Country is this company located?");
+            System.out.println((char)27 + "[39mIn which Country is this company located?");
             countryName=scanner.nextLine().trim();
             try{
                 //Go to utils Checker to see the method
                 validCountryName=checkCountry(countryName);
 
             }catch (NullPointerException e) {
-                System.out.println("Country cannot be null");
+                System.out.println((char)27 + "[31mCountry cannot be null");
             }catch (IllegalArgumentException e){
                 //This message comes from the checker method
                 System.out.println(e.getMessage());

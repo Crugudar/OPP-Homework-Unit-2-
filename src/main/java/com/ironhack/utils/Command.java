@@ -3,16 +3,22 @@ package com.ironhack.utils;
 import com.ironhack.classes.*;
 import com.ironhack.enums.*;
 
+import javax.sound.sampled.*;
+import java.io.*;
 import java.util.*;
 
 import static com.ironhack.utils.ScanInfo.*;
 
 public class Command {
 
+    public static Sound errorSound = new Sound("error.wav");
+    public static Sound bipSound = new Sound("bip.wav");
+    public static Sound exitSound = new Sound("exit.wav");
+
     //method called in main
     public static void commandReader(String userInput,
                                      HashMap<Integer, Lead> leadList,
-                                     HashMap<Integer, Opportunity> opportunityList) {
+                                     HashMap<Integer, Opportunity> opportunityList) throws UnsupportedAudioFileException, IOException, LineUnavailableException {
 
         //separate the words in the input
         String[] arr = userInput.split(" ");
@@ -31,6 +37,7 @@ public class Command {
 
                         //this method is defined below
                         newLead(name, phone, email, company, leadList);
+                        bipSound.playSound();
                     }
                     break;
 
@@ -57,7 +64,8 @@ public class Command {
                     //the next two methods are also below
                     Account account = createAccount(industry, numOfEmployees, city, country, contact, opportunity);
                     removeLead(id, leadList);
-
+                    System.out.println((char)27 + "[32mNew opportunity created!!\n"+opportunity);
+                    bipSound.playSound();
                     break;
                 case "show":
                     switch (arr[1]) {
@@ -73,7 +81,8 @@ public class Command {
 
                         default:
                             //default to make sure every option is managed
-                            System.out.println("That is not a valid command");
+                            System.out.println((char)27 + "[31mThat is not a valid command");
+                            errorSound.playSound();
                     }
                     break;
                 case "lookup":
@@ -91,35 +100,45 @@ public class Command {
                             break;
                         default:
                             // AGAIN default to make sure every option is managed
-                            System.out.println("That is not a valid command");
+                            System.out.println((char)27 + "[31mThat is not a valid command");
+                            errorSound.playSound();
                     }
                     break;
 
                 case "close-lost":
                     //method below
                     closeLost(arr[1], opportunityList);
+                    bipSound.playSound();
                     break;
 
                 case "close-won":
                     //method below
                     closeWon(arr[1], opportunityList);
+                    bipSound.playSound();
                     break;
 
                 case "exit":
                     //ONLY COMMAND THAT EXITS THE APPLICATION
-                    System.out.println("Thank you for using the best CRM in the world");
+                    System.out.println((char)27 + "[46m" + (char)27 + "[30mThank you for using the best CRM in the world");
+                    exitSound.playSound();
+                    bipSound.closeSound();
+                    errorSound.closeSound();
+                    exitSound.closeSound();
                     break;
 
                 default:
                     //if the first word is not equal to any of the above this comes up
-                    System.out.println("That is not a valid command");
+                    System.out.println((char)27 + "[31mThat is not a valid command");
                 }
             }catch(NumberFormatException e){
-                System.out.println("Type a valid id");
+                System.out.println((char)27 + "[31mType a valid id");
+                errorSound.playSound();
             }catch(NullPointerException e){
-                System.out.println("That id does not exist");
+                System.out.println((char)27 + "[31mThat id does not exist");
+                errorSound.playSound();
             }catch(ArrayIndexOutOfBoundsException e){
-                System.out.println("That is not a valid command");
+                System.out.println((char)27 + "[31mThat is not a valid command");
+                errorSound.playSound();
             }
     }
 
@@ -134,7 +153,7 @@ public class Command {
 
         Lead lead = new Lead(name, phone, email, compName);
         leadList.put(lead.getLeadId(), lead);
-        System.out.println("New lead created!!\n"+lead);
+        System.out.println((char)27 + "[32mNew lead created!!\n"+lead);
     }
 
     //Receives the lead info and creates Contact
@@ -182,7 +201,7 @@ public class Command {
 //        If there are no leads left
         if (leadList.isEmpty()){
 //            Out prints a message
-            System.out.println("You don't have leads in this moment");
+            System.out.println((char)27 + "[31mYou don't have leads in this moment");
         }else {
             for (Lead lead : leadList.values()) {
                 System.out.println(lead);
@@ -197,7 +216,7 @@ public class Command {
         //If there are no opportunities yet
         if (opportunityList.isEmpty()){
 //            Out prints a message
-            System.out.println("You haven't created any opportunity yet");
+            System.out.println((char)27 + "[31mYou haven't created any opportunity yet");
         }else {
             for (Opportunity opportunity : opportunityList.values()) {
                 System.out.println(opportunity);
@@ -256,7 +275,16 @@ public class Command {
         if (opportunity == null){
             throw new NullPointerException();
         }
-        opportunity.setStatus(Status.CLOSED_LOST);
+
+        //status will be changed if it's not already set to closed-lost (that makes sense, right?)
+        if (opportunity.getStatus() != Status.CLOSED_LOST){
+            opportunity.setStatus(Status.CLOSED_LOST);
+            opportunity.toString();
+            System.out.println((char)27 + "[32mOpportunity closed-lost");
+        } else {
+            System.out.println((char)27 + "[39mOpportunity was already closed-lost");
+        }
+
     }
 
     //Change opportunity status, receives opportunity id and List
@@ -275,7 +303,15 @@ public class Command {
         if (opportunity == null){
             throw new NullPointerException();
         }
-        opportunity.setStatus(Status.CLOSED_WON);
+
+        //status will be changed if it's not already set to closed-won (that makes sense, right?)
+        if (opportunity.getStatus() != Status.CLOSED_WON){
+            opportunity.setStatus(Status.CLOSED_WON);
+            opportunity.toString();
+            System.out.println((char)27 + "[32mOpportunity closed-won");
+        } else {
+            System.out.println((char)27 + "[39mOpportunity was already closed-won");
+        }
     }
 
 }

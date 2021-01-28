@@ -49,7 +49,7 @@ public class Opportunity {
 
     @Override
     public String toString() {
-        return "Opportunity " + opportunityId+
+        return (char)27 + "[34mOpportunity " + opportunityId+
                 "\nproduct = " + product +
                 "\namount = " + quantity +
                 ", \nstatus = " + status +
