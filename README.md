@@ -64,7 +64,7 @@ The "Test" classes are inside src/test/java/com/ironhack/utils/:
 * CommandTest
 
 
-##Diagrams
+## Diagrams
 
 ### Use Case
 ![Use case diagram](./diagrams/CRM_case_diagram.png)
