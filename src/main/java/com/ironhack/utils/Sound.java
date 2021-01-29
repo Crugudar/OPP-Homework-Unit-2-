@@ -42,6 +42,7 @@ public class Sound {
             clip.loop(0);
             // every time the method is executed, we set the sound starting position to 0
             clip.setMicrosecondPosition(0);
+            System.out.println("Press ENTER");
             clip.start();
             new Scanner(System.in).nextLine();
             clip.stop(); // enough, thank you!
