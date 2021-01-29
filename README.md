@@ -49,7 +49,7 @@ When you run our program, the following menu will appear:
     - exit
 
 
-Those are all the commands you can use, they are all case insensitive and were made error-proof. This menu will show until you type "exit" (or any phrase beggining with exit :P). We have created two leads and two opportunities to make your testing easier :)
+Those are all the commands you can use, they are all case insensitive and were made error-proof. This menu will show until you type "exit" (or any phrase beggining with exit :P), and you command will be only read if this menu is the last thing printed in your console (take this into account since some commands require you to hit ENTER before continuing). We have created two leads and two opportunities to make your testing easier :)
 
 From this moment, the program works as requested by the OPP Homework. Remember that you cannot convert a Lead to Opportunity if it doesn't exists, and all of those obvious things. But don't worry, we have managed all exceptions so you can act as a dumb monkey if you want c: have fun!
 
