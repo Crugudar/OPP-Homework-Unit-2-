@@ -7,6 +7,7 @@ public class Contact {
     private String phoneNumber;
     private String email;
     private String companyName;
+    //This allows us to generate ids that don't repeat
     private final int contactId;
     private static int contactIdCounter = 0;
 

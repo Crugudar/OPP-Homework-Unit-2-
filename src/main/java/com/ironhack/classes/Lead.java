@@ -10,6 +10,7 @@ public class Lead {
     private String phoneNumber;
     private String email;
     private String companyName;
+    //This allows us to generate ids that don't repeat
     private final int leadId;
     private static int leadIdCounter = 0;
 
@@ -47,7 +48,7 @@ public class Lead {
 
     @Override
     public String toString() {
-        return "Lead " + leadId +
+        return (char)27 + "[34mLead " + leadId +
                 "\nname = " + name +
                 ", \nphoneNumber = " + phoneNumber +
                 ", \nemail = " + email +

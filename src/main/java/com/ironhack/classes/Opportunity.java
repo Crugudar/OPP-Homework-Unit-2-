@@ -9,6 +9,7 @@ public class Opportunity {
     private int quantity;
     private Contact decisionMaker;
     private Status status;
+    //This allows us to generate ids that don't repeat
     private int opportunityId;
     private static int opportunityIdCounter = 0;
 
@@ -48,7 +49,7 @@ public class Opportunity {
 
     @Override
     public String toString() {
-        return "Opportunity " + opportunityId+
+        return (char)27 + "[34mOpportunity " + opportunityId+
                 "\nproduct = " + product +
                 "\namount = " + quantity +
                 ", \nstatus = " + status +
